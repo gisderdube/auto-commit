@@ -16,10 +16,14 @@ function auto_commit() {
         return 0
     fi
 
-    echo $diff_output
 
-    echo "\n\n\n"
+    echo "\n\n\n-----------------------------------\n\n\n"
 
+    prompt="Please summarize the following git diff in a concise commit message format:\n\n$diff_output"
+
+    echo $prompt
+
+    echo "\n\n\n-----------------------------------\n\n\n"
     # Use Claude API to summarize the changes
     response=$(curl https://api.anthropic.com/v1/messages \
         -H "Content-Type: application/json" \
@@ -30,13 +34,17 @@ function auto_commit() {
         "messages": [
             {
                 "role": "user",
-                "content": "Please summarize the following git diff in a concise commit message format:\n\n'"$diff_output"'"
+                "content": "$prompt"
             }
         ]
     }')
+    echo "\n\n\n-----------------------------------\n\n\n"
     echo $response
+    echo "\n\n\n-----------------------------------\n\n\n"
 
     summary=$(echo $response | jq -r '.content[0].text')
+    echo $summary
+    echo "\n\n\n-----------------------------------\n\n\n"
 
     # Commit the changes with the generated summary
     git commit -am "$summary"

@@ -17,7 +17,7 @@ function auto_commit() {
     fi
 
     # Use Claude API to summarize the changes
-    summary=$(curl https://api.anthropic.com/v1/messages \
+    response=$(curl https://api.anthropic.com/v1/messages \
         -H "Content-Type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -d '{
@@ -29,7 +29,10 @@ function auto_commit() {
                 "content": "Please summarize the following git diff in a concise commit message format:\n\n'"$diff_output"'"
             }
         ]
-    }' | jq -r '.content')
+    }')
+    echo $response
+
+    summary=$(echo $response | jq -r '.content[0].text')
 
     # Commit the changes with the generated summary
     git commit -am "$summary"

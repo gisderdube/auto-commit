@@ -27,7 +27,6 @@ async function autoCommit() {
         return 0;
     }
 
-    console.log("\n\n\n-----------------------------------\n\n\n");
 
     const prompt = `I am working on a software project. 
     I want to summarize the following input into a commit message 
@@ -36,9 +35,6 @@ async function autoCommit() {
     that I can use as a commit message. 
     Here is the git diff:\n\n${JSON.stringify(diffOutput)}`;
 
-    console.log("PROMPT:", prompt);
-
-    console.log("\n\n\n-----------------------------------\n\n\n");
 
     // Use Claude API to summarize the changes
     let response;

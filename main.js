@@ -14,7 +14,7 @@ async function autoCommit() {
     let diffOutput;
     try {
         execSync('git add -A');
-        diffOutput = execSync('git diff').toString();
+        diffOutput = execSync('git diff --staged').toString();
     } catch (error) {
         console.error("Error getting git diff:", error.message);
         return 1;

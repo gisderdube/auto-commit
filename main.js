@@ -13,6 +13,7 @@ async function autoCommit() {
     // Get the current git diff
     let diffOutput;
     try {
+        execSync('git add -A');
         diffOutput = execSync('git diff').toString();
     } catch (error) {
         console.error("Error getting git diff:", error.message);
@@ -63,7 +64,6 @@ async function autoCommit() {
 
     // Commit the changes with the generated summary
     try {
-        execSync('git add -A');
         execSync(`git commit -m "${summary}"`);
         execSync('git push');
     } catch (error) {

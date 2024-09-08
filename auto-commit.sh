@@ -34,7 +34,6 @@ function auto_commit() {
     # Commit the changes with the generated summary
     git commit -am "$summary"
 
-    # Push the changes
     git push
 
     echo "Changes committed and pushed with the following summary:"

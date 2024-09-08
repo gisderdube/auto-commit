@@ -27,7 +27,6 @@ async function autoCommit() {
         return 0;
     }
 
-
     const prompt = `I am working on a software project. 
     I want to summarize the following input into a commit message 
     that is no longer than 10 words. 
@@ -60,13 +59,8 @@ async function autoCommit() {
         return 1;
     }
 
-    console.log("\n\n\n-----------------------------------\n\n\n");
-    console.log(response.data);
-    console.log("\n\n\n-----------------------------------\n\n\n");
 
     const summary = response.data.content[0].text;
-    console.log(summary);
-    console.log("\n\n\n-----------------------------------\n\n\n");
 
     // Commit the changes with the generated summary
     try {
@@ -78,8 +72,8 @@ async function autoCommit() {
         return 1;
     }
 
-    console.log("Changes committed and pushed with the following summary:");
-    console.log(summary);
+    console.log("[auto-commit] Changes committed and pushed with the following summary:");
+    console.log("-> " + summary);
 }
 
 // Export the function for use as a module

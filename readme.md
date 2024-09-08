@@ -13,10 +13,20 @@ The Anthropic API is used to generate the commit message. Therefore, you will ne
 npm install -g auto-commit-cli
 ```
 
+### Setting your Anthropic API key
+
+```bash
+### locally
+export ANTHROPIC_API_KEY="xxx" # set your Anthropic API key
+
+### in .zshrc or .bashrc
+echo "export ANTHROPIC_API_KEY='xxx'" >> ~/.zshrc # or ~/.bashrc
+source ~/.zshrc # or ~/.bashrc
+```
+
 ## Usage
 
 ```bash
-export ANTHROPIC_API_KEY="xxx" # set your Anthropic API key, ideally in your .zshrc or .bashrc
 auto-commit
 ```
 

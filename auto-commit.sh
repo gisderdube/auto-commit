@@ -28,6 +28,7 @@ function auto_commit() {
     response=$(curl https://api.anthropic.com/v1/messages \
         -H "Content-Type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
+        -H "anthropic-version: 2023-06-01" \
         -d '{
         "model": "claude-3-sonnet-20240229",
         "max_tokens": 1024,

@@ -1,0 +1,23 @@
+{
+  "name": "auto-commit-cli",
+  "version": "0.1.1",
+  "description": "Automatically commit and push changes using AI-generated commit messages",
+  "main": "main.js",
+  "bin": {
+    "auto-commit": "./main.js"
+  },
+  "scripts": {
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "axios": "^0.21.1"
+  },
+  "keywords": ["git", "commit", "ai", "cli"],
+  "author": {
+    "name": "Lukas Gisder-Dubé",
+    "url": "https://dube.io",
+    "twitter": "https://x.com/gisderdube"
+  },
+  "homepage": "https://github.com/gisderdube/auto-commit",
+  "license": "MIT"
+}

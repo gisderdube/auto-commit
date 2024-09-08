@@ -35,7 +35,7 @@ function auto_commit() {
         "messages": [
             {
                 "role": "user",
-                "content": "$prompt"
+                "content": "'"$prompt"'"
             }
         ]
     }')

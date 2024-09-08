@@ -64,7 +64,7 @@ async function autoCommit() {
     // Commit the changes with the generated summary
     try {
         execSync('git add -A');
-        execSync(`git commit -am "${summary}"`);
+        execSync(`git commit -m "${summary}"`);
         execSync('git push');
     } catch (error) {
         console.error("Error committing or pushing changes:", error.message);

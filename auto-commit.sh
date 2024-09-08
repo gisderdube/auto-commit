@@ -18,7 +18,7 @@ function auto_commit() {
 
     echo $diff_output
 
-    echo "\n\n"
+    echo "\n\n\n"
 
     # Use Claude API to summarize the changes
     response=$(curl https://api.anthropic.com/v1/messages \

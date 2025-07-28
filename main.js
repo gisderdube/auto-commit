@@ -6,6 +6,7 @@ const Anthropic = require("@anthropic-ai/sdk");
 async function autoCommit() {
 	// Parse command line arguments
 	const args = process.argv.slice(2);
+	console.log("process.argv:", process.argv);
 	console.log("args:", args);
 	const shouldPush = args.includes("--push");
 	const previewOnly = args.includes("--preview");

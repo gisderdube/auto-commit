@@ -7,10 +7,13 @@
 		"auto-commit": "./main.js"
 	},
 	"scripts": {
-		"start": "node main.js"
+		"start": "node main.js",
+		"preview": "node main.js --preview",
+		"commit": "node main.js",
+		"commit-push": "node main.js --push"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^0.57.0"
+		"@anthropic-ai/sdk": "^0.27.0"
 	},
 	"keywords": ["git", "commit", "ai", "cli"],
 	"author": {

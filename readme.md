@@ -27,7 +27,26 @@ source ~/.zshrc # or ~/.bashrc
 ## Usage
 
 ```bash
+# this will stage all changes, generate a commit message and create a new commit with it
 auto-commit
+```
+
+### Auto-push
+
+```bash 
+# same as base command, but pushes the newly created commit
+auto-commit --push
+```
+
+### Preview the message
+```bash
+# only logs the generated commit message, no commit, no push
+auto-commit --preview
+```
+
+### Adjust the prompt
+```bash
+export AUTO_COMMIT_PROMPT="Use present tense when creating the commit message."
 ```
 
 ### Optional: Create an alias

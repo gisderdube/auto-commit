@@ -67,6 +67,5 @@ export AUTO_COMMIT_PROMPT="Use present tense when creating the commit message."
 ```bash
 echo "alias ac='auto-commit'" >> ~/.zshrc # or ~/.bashrc
 source ~/.zshrc # or ~/.bashrc
-
 ac
 ```

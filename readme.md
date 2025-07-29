@@ -31,18 +31,31 @@ source ~/.zshrc # or ~/.bashrc
 auto-commit
 ```
 
-### Auto-push
+### Command Line Options
 
+#### `--push`
 ```bash 
-# same as base command, but pushes the newly created commit
+# same as base command, but pushes the newly created commit to remote
 auto-commit --push
 ```
 
-### Preview the message
+#### `--preview`
 ```bash
-# only logs the generated commit message, no commit, no push
+# only generates and displays the commit message, no commit is made
+# subsequent runs with the same diff will use cached message (no API call)
 auto-commit --preview
 ```
+
+#### `--version` or `-v`
+```bash
+# displays the current version of auto-commit-cli
+auto-commit --version
+auto-commit -v
+```
+
+### Caching
+
+The tool automatically caches commit messages based on the diff content. When you run `--preview`, the generated message is cached. If you then run the actual commit command (or `--preview` again) with the same changes, it will use the cached message without making another API request.
 
 ### Adjust the prompt
 ```bash

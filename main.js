@@ -32,33 +32,35 @@ async function autoCommit() {
 
 		const filteredDiff = filterAndReduceDiff(diffOutput);
 		console.log(
-			`[auto-commit] Original diff: ${diffOutput.length} chars, filtered: ${filteredDiff.length} chars`,
+			`[auto-commit-cli] Original diff: ${diffOutput.length} chars, filtered: ${filteredDiff.length} chars`,
 		);
 
-		const summary = await generateCommitMessage(filteredDiff);
+		let summary;
 
 		if (previewOnly) {
-			console.log("[auto-commit] Preview mode - generated commit message:");
+			summary = await generateCommitMessage(filteredDiff, true);
+			console.log("[auto-commit-cli] Preview mode - generated commit message:");
 			console.log(`-> ${summary}`);
 			return 0;
 		}
 
+		summary = await generateCommitMessage(filteredDiff, true);
 		commitChanges(summary);
-		console.log("[auto-commit] Changes committed with summary:");
+		console.log("[auto-commit-cli] Changes committed with summary:");
 		console.log(`-> ${summary}`);
 
 		if (shouldPush) {
 			pushChanges();
-			console.log("[auto-commit] Changes pushed to remote repository.");
+			console.log("[auto-commit-cli] Changes pushed to remote repository.");
 		} else {
 			console.log(
-				"[auto-commit] Use --push flag to push to remote repository.",
+				"[auto-commit-cli] Use --push flag to push to remote repository.",
 			);
 		}
 
 		return 0;
 	} catch (error) {
-		console.error(`[auto-commit] Error: ${error.message}`);
+		console.error(`[auto-commit-cli] Error: ${error.message}`);
 		return 1;
 	}
 }

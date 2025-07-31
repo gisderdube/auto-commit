@@ -27,7 +27,8 @@ source ~/.zshrc # or ~/.bashrc
 ## Usage
 
 ```bash
-# this will stage all changes, generate a commit message and create a new commit with it
+# this will stage all changes, generate a commit message and show a preview
+# press Enter to create the commit or Escape to cancel
 auto-commit
 ```
 
@@ -35,15 +36,14 @@ auto-commit
 
 #### `--push`
 ```bash 
-# same as base command, but pushes the newly created commit to remote
+# same as base command with preview, but pushes the newly created commit to remote
 auto-commit --push
 ```
 
-#### `--preview`
+#### `--no-preview`
 ```bash
-# only generates and displays the commit message, no commit is made
-# subsequent runs with the same diff will use cached message (no API call)
-auto-commit --preview
+# skips the preview confirmation and creates the commit immediately
+auto-commit --no-preview
 ```
 
 #### `--version` or `-v`
@@ -55,7 +55,7 @@ auto-commit -v
 
 ### Caching
 
-The tool automatically caches commit messages based on the diff content. When you run `--preview`, the generated message is cached. If you then run the actual commit command (or `--preview` again) with the same changes, it will use the cached message without making another API request.
+The tool automatically caches commit messages based on the diff content. When you run the tool in preview mode (default behavior), the generated message is cached. If you then proceed with the commit or run the tool again with the same changes, it will use the cached message without making another API request.
 
 ### Adjust the prompt
 ```bash

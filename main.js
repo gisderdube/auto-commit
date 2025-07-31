@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const readline = require("readline");
 const { CONFIG } = require("./lib/config");
 const { parseArguments } = require("./lib/args");
 const { filterAndReduceDiff } = require("./lib/diffProcessor");
@@ -10,6 +11,42 @@ const {
 	pushChanges,
 } = require("./lib/gitService");
 const { validateApiKey, generateCommitMessage } = require("./lib/aiService");
+
+function promptForEnter() {
+	return new Promise((resolve, reject) => {
+		console.log(
+			"\n\nPress Enter to generate the commit or Escape to cancel...",
+		);
+
+		process.stdin.setRawMode(true);
+		process.stdin.resume();
+		process.stdin.setEncoding("utf8");
+
+		const onData = (key) => {
+			if (key === "\r" || key === "\n") {
+				// Enter key pressed
+				cleanup();
+				resolve(true);
+			} else if (key === "\u001b") {
+				// Escape key pressed
+				cleanup();
+				resolve(false);
+			} else if (key === "\u0003") {
+				// Ctrl+C pressed
+				cleanup();
+				process.exit(0);
+			}
+		};
+
+		const cleanup = () => {
+			process.stdin.setRawMode(false);
+			process.stdin.pause();
+			process.stdin.removeListener("data", onData);
+		};
+
+		process.stdin.on("data", onData);
+	});
+}
 
 async function autoCommit() {
 	try {
@@ -40,11 +77,21 @@ async function autoCommit() {
 		if (previewOnly) {
 			summary = await generateCommitMessage(filteredDiff, true);
 			console.log("[auto-commit-cli] Preview mode - generated commit message:");
-			console.log(`-> ${summary}`);
-			return 0;
+			console.log(`\n\x1b[1m${summary}\x1b[0m`);
+			const shouldProceed = await promptForEnter();
+
+			if (!shouldProceed) {
+				console.log(
+					"[auto-commit-cli] Commit cancelled. Preview has been cached for future use.",
+				);
+				return 0;
+			}
 		}
 
-		summary = await generateCommitMessage(filteredDiff, true);
+		if (!summary) {
+			summary = await generateCommitMessage(filteredDiff, true);
+		}
+
 		commitChanges(summary);
 		console.log("[auto-commit-cli] Changes committed with summary:");
 		console.log(`-> ${summary}`);

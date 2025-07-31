@@ -15,7 +15,7 @@ const { validateApiKey, generateCommitMessage } = require("./lib/aiService");
 function promptForEnter() {
 	return new Promise((resolve, reject) => {
 		console.log(
-			"\n\nPress Enter to generate the commit or Escape to cancel...",
+			"\n\nPress \x1b[1mEnter\x1b[0m to commit the changes or \x1b[1mEsc\x1b[0m to cancel...",
 		);
 
 		process.stdin.setRawMode(true);
@@ -76,14 +76,12 @@ async function autoCommit() {
 
 		if (previewOnly) {
 			summary = await generateCommitMessage(filteredDiff, true);
-			console.log("[auto-commit-cli] Preview mode - generated commit message:");
+			console.log("[auto-commit-cli] generated commit message:");
 			console.log(`\n\x1b[1m${summary}\x1b[0m`);
 			const shouldProceed = await promptForEnter();
 
 			if (!shouldProceed) {
-				console.log(
-					"[auto-commit-cli] Commit cancelled. Preview has been cached for future use.",
-				);
+				console.log("[auto-commit-cli] Commit cancelled.");
 				return 0;
 			}
 		}

@@ -70,3 +70,7 @@ source ~/.zshrc # or ~/.bashrc
 
 ac
 ```
+
+## Configuration
+
+- You can set `AUTO_COMMIT_MODEL` via env variable to any available Claude model. Defaults to `claude-haiku-4-5`

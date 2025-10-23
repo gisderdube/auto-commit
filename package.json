@@ -1,6 +1,6 @@
 {
 	"name": "auto-commit-cli",
-	"version": "0.1.9",
+	"version": "0.1.10",
 	"description": "Automatically commit and push changes using AI-generated commit messages",
 	"main": "main.js",
 	"bin": {
@@ -13,7 +13,7 @@
 		"commit-push": "node main.js --push"
 	},
 	"dependencies": {
-		"@anthropic-ai/sdk": "^0.27.0"
+		"@anthropic-ai/sdk": "^0.67.0"
 	},
 	"keywords": ["git", "commit", "ai", "cli"],
 	"author": {

@@ -1,6 +1,6 @@
 {
 	"name": "auto-commit-cli",
-	"version": "0.1.12",
+	"version": "0.1.13",
 	"description": "Automatically commit and push changes using AI-generated commit messages",
 	"main": "main.js",
 	"bin": {
@@ -15,7 +15,12 @@
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.67.0"
 	},
-	"keywords": ["git", "commit", "ai", "cli"],
+	"keywords": [
+		"git",
+		"commit",
+		"ai",
+		"cli"
+	],
 	"author": {
 		"name": "Lukas Gisder-Dubé",
 		"url": "https://dube.io",

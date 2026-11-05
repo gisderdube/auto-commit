@@ -2,7 +2,7 @@
 
 Automatically commit and push changes using AI-generated commit messages.
 
-NOTE: All files will be staged before the commit is made.
+NOTE: All files will be staged before the commit is made, unless you pass `--staged`.
 
 The Anthropic API is used to generate the commit message. Therefore, you will need to have an Anthropic API key.
 
@@ -44,6 +44,13 @@ auto-commit --push
 ```bash
 # skips the preview confirmation and creates the commit immediately
 auto-commit --no-preview
+```
+
+#### `--staged` or `-s`
+```bash
+# skips staging and commits only what is already staged
+auto-commit --staged
+auto-commit -s
 ```
 
 #### `--version` or `-v`

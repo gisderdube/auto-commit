@@ -50,7 +50,7 @@ function promptForEnter() {
 
 async function autoCommit() {
 	try {
-		const { shouldPush, previewOnly, showVersion } = parseArguments();
+		const { shouldPush, previewOnly, stagedOnly, showVersion } = parseArguments();
 
 		if (showVersion) {
 			console.log(`auto-commit-cli v${CONFIG.VERSION}`);
@@ -59,11 +59,13 @@ async function autoCommit() {
 
 		validateApiKey();
 
-		stageAllChanges();
+		if (!stagedOnly) {
+			stageAllChanges();
+		}
 		const diffOutput = getStagedDiff();
 
 		if (!diffOutput.trim()) {
-			console.log("No changes to commit.");
+			console.log(stagedOnly ? "No staged changes to commit." : "No changes to commit.");
 			return 0;
 		}
 
